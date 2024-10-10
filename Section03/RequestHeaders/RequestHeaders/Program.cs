@@ -13,7 +13,15 @@ app.Run(async (HttpContext context) =>
         await context.Response.WriteAsync($"<h1>{userAgent}</h1>");
         await context.Response.WriteAsync($"<h1>{userAgent1}</h1>");
     }
-    
+
+    if (context.Request.Headers.ContainsKey("AuthorizationKey"))
+    {
+        string authorizationKey = context.Request.Headers["AuthorizationKey"];
+
+        await context.Response.WriteAsync($"<h1>{authorizationKey}</h1>");
+    }
+
+
 });
 
 app.Run();
