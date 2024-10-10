@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35201.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpResponseHeaders", "HttpResponseHeaders\HttpResponseHeaders.csproj", "{44CBECA9-1D25-49ED-9FC7-726C78346B10}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{44CBECA9-1D25-49ED-9FC7-726C78346B10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44CBECA9-1D25-49ED-9FC7-726C78346B10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44CBECA9-1D25-49ED-9FC7-726C78346B10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44CBECA9-1D25-49ED-9FC7-726C78346B10}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B2EE4B39-A899-4296-9A9C-86D9D784A74F}
+	EndGlobalSection
+EndGlobal
