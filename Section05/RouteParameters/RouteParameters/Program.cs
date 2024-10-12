@@ -21,11 +21,28 @@ app.UseEndpoints(endpoints =>
         await context.Response.WriteAsync($"In Employee profile of {routeParamEmployee}");
     });
 
+    //Default Parameters
     //Ex: products/details/1
     endpoints.Map("products/details/{id=1}", async context =>
     {
         int id = Convert.ToInt16(context.Request.RouteValues["id"]);
-        await context.Response.WriteAsync($"Proudct details: {id}");
+        await context.Response.WriteAsync($"Product details: {id}");
+    });
+
+    //Optional Parameters
+    //Ex: products/details/
+    endpoints.Map("productsOpt/details/{id?}", async context =>
+    {
+        if(context.Request.RouteValues.ContainsKey("id"))
+        {
+            int id = Convert.ToInt16(context.Request.RouteValues["id"]);
+            await context.Response.WriteAsync($"Product details: {id}");
+        }
+        else
+        {
+            await context.Response.WriteAsync($"Product details: id is not supplied!");
+        }
+        
     });
 });
 
