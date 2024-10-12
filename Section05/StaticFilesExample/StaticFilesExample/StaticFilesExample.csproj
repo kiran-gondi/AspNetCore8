@@ -7,7 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="myroot\rob1.jpg" />
+    <Content Include="myroot\rob2.jpg" />
     <Content Include="rob3.jfif" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 </Project>
