@@ -75,5 +75,13 @@ namespace ControllersExample.Controllers
             //return new FileContentResult(fileBytes, "application/pdf");
             return File(fileBytes, "application/pdf");
         }
+
+        [Route("file-download4")]
+        public IActionResult FileDownload4()
+        {
+            byte[] fileBytes = System.IO.File.ReadAllBytes(@"C:\HandsOn\U\AspNetCore8\Section06\ControllersExample\ControllersExample\dummy-pdf_2 - Copy.pdf");
+            //return new FileContentResult(fileBytes, "application/pdf");
+            return File(fileBytes, "application/pdf");
+        }
     }
 }
