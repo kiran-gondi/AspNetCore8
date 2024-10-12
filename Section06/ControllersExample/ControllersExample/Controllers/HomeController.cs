@@ -50,7 +50,8 @@ namespace ControllersExample.Controllers
         {
             //return "{ \"key\":\"value\"}";
             Person person = new Person() { Id = Guid.NewGuid(), FirstName = "Jim", LastName="Tim", Age = 34 };
-            return new JsonResult(person);
+            //return new JsonResult(person);
+            return Json(person);
         }
     }
 }
