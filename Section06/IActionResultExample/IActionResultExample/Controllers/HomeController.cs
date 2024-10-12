@@ -77,7 +77,8 @@ namespace IActionResultExample.Controllers
             return File("/dummy.pdf", "application/pdf");
         }*/
 
-        [Route("book")]
+        //[Route("book")]
+        [Route("bookstore")]
         public IActionResult Index()
         {
             if (!Request.Query.ContainsKey("bookid"))
@@ -111,7 +112,9 @@ namespace IActionResultExample.Controllers
                 return StatusCode(401);
             }
 
-            return File("/dummy.pdf", "application/pdf");
+            //return File("/dummy.pdf", "application/pdf");
+            //return new RedirectToActionResult("Books", "Store", new {});//302 - Found
+            return new RedirectToActionResult("Books", "Store", new {}, permanent:true);//301 - Found
         }
     }
 }
