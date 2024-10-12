@@ -6,4 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Include="dummy-pdf_2 - Copy.pdf" />
+  </ItemGroup>
+
 </Project>

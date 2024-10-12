@@ -53,5 +53,27 @@ namespace ControllersExample.Controllers
             //return new JsonResult(person);
             return Json(person);
         }
+
+        [Route("file-download1")]
+        public VirtualFileResult FileDownload1()
+        {
+            //return new VirtualFileResult("/dummy-pdf_2.pdf", "application/pdf");
+            return File("/dummy-pdf_2.pdf", "application/pdf");
+        }
+
+        [Route("file-download2")]
+        public PhysicalFileResult FileDownload2()
+        {
+            //return new PhysicalFileResult("C:\\HandsOn\\U\\AspNetCore8\\Section06\\ControllersExample\\ControllersExample\\dummy-pdf_2 - Copy.pdf", "application/pdf");
+            return PhysicalFile(@"C:\\HandsOn\\U\\AspNetCore8\\Section06\\ControllersExample\\ControllersExample\\dummy-pdf_2 - Copy.pdf", "application/pdf");
+        }
+
+        [Route("file-download3")]
+        public FileContentResult FileDownload3()
+        {
+            byte[] fileBytes = System.IO.File.ReadAllBytes(@"C:\HandsOn\U\AspNetCore8\Section06\ControllersExample\ControllersExample\dummy-pdf_2 - Copy.pdf");
+            //return new FileContentResult(fileBytes, "application/pdf");
+            return File(fileBytes, "application/pdf");
+        }
     }
 }
