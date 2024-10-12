@@ -114,7 +114,16 @@ namespace IActionResultExample.Controllers
 
             //return File("/dummy.pdf", "application/pdf");
             //return new RedirectToActionResult("Books", "Store", new {});//302 - Found
-            return new RedirectToActionResult("Books", "Store", new {}, permanent:true);//301 - Found
+            //return RedirectToAction("Books", "Store", new {id= bookId });
+
+            //return new RedirectToActionResult("Books", "Store", new {}, permanent:true);//302 - Found
+            //return RedirectToActionPermanent("Books", "Store", new { id = bookId });
+
+            //return new LocalRedirectResult($"store/books/{bookId}", true); //302 - Found
+            //return LocalRedirectPermanent($"store/books/{bookId}"); //302 - Found
+
+            //return Redirect($"store/books/{bookId}"); //302 - Found
+            return RedirectPermanent($"store/books/{bookId}"); //302 - Found
         }
     }
 }
