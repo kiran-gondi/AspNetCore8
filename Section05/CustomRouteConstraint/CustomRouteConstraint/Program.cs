@@ -23,6 +23,13 @@ app.UseEndpoints(endpoints =>
         else
             await context.Response.WriteAsync($"sales report invalid month {month}");
     });
+
+    //sales-report/2024/jan
+    endpoints.Map("sales-report/2024/jan", async context =>
+    {
+        string? month = Convert.ToString(context.Request.RouteValues["month"]);
+        await context.Response.WriteAsync($"sales report year is 2024 and month {month}");
+    });
 });
 
 app.Run(async context =>
