@@ -8,6 +8,19 @@ namespace ModelValidationsExample.Controllers
         [Route("register")]
         public IActionResult Index(Person person)
         {
+            if (!ModelState.IsValid) {
+                string errors = string.Join("\n", 
+                    ModelState.Values.SelectMany(value => value.Errors).Select(err => err.ErrorMessage));
+
+                //foreach (var item in ModelState.Values) {
+                //    foreach(var error in item.Errors)
+                //    {
+                //        errorsList.Add(error.ErrorMessage);
+                //    }
+                //}
+
+                return BadRequest(errors);
+            }
             return Content($"{person}");
         }
     }
