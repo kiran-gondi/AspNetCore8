@@ -31,9 +31,15 @@ namespace ModelValidationsExample.Models
         [Range(0, 999.99, ErrorMessage = "{0} should be between ${1} and ${2}")]
         public double? Price { get; set; }
 
-        //[MinimumYearValidator(2005, ErrorMessage = "DOB should not be newer than Jan 01, {0}")]
-        [MinimumYearValidator(2005)]
+        [MinimumYearValidator(2005, ErrorMessage = "DOB should not be newer than Jan 01, {0}")]
+        //[MinimumYearValidator(2005)]
         public DateTime? DateOfBirth { get; set; }
+
+        public DateTime? FromDate {  get; set; }
+
+        //[DateRangeValidator("FromDate", ErrorMessage="'From Date' should be older than or eqaul to 'To date'")]
+        [DateRangeValidator("ToDate", ErrorMessage="'From Date' should be older than or eqaul to 'To date'")]
+        public DateTime? ToDate {  get; set; }
 
         public override string ToString()
         {
