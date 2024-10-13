@@ -4,7 +4,7 @@ namespace ModelBindingExample.Models
 {
     public class Book
     {
-        [FromQuery]
+        //[FromQuery]
         public int? BookId { get; set; }
         public string? Author { get; set; }
 
