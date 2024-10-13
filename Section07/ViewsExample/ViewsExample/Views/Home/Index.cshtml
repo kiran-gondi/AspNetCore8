@@ -18,7 +18,8 @@
     };
 }
 
-@functions{
+@* @functions{ *@
+@{
     //method
     //Local Function
     double? GetAge(DateTime? dateOfBirth)
@@ -33,7 +34,9 @@
         }
     }
 
-    string Name { get; set; } = "Hello Name";
+    //string Name { get; set; } = "Hello Name";
+
+    string alertMessage = $"<script>alert('{people.Count} people found')</script>";
 }
 <!DOCTYPE <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -43,7 +46,10 @@
     </head>
 
     <body>
-    <h1>Welcome to @Name</h1>
+        @* @alertMessage; *@
+        @Html.Raw(alertMessage)
+    @* <h1>Welcome to @Name</h1> *@
+    <h1>Welcome </h1>
     <h2>Hello @person.Name</h2>
     @if (person.DateOfBirth.HasValue)
     {
@@ -55,7 +61,7 @@
         <h3>Date of Birth is unknown!</h3>
     }
 
-    @switch (person.PersonGender)
+   @*  @switch (person.PersonGender)
     {
         case Gender.Male:
             <p>Nov 19 is mens day!</p>
@@ -86,7 +92,7 @@
             @personItem.PersonGender 
         </div>
     }
-    <br/>
+    <br/> *@
 
     @for (int i = 0; i < people.Count-1; i++)
     {
