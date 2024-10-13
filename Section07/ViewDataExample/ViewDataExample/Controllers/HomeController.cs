@@ -24,7 +24,8 @@ namespace ViewDataExample.Controllers
                   new Person() { Name = "Susan", DateOfBirth = DateTime.Parse("2008-07-12"), PersonGender = Gender.Other}
               };
 
-            ViewData["people"] = people;
+            //ViewData["people"] = people;
+            ViewBag.people = people;
             return View();
         }
 
