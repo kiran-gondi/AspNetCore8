@@ -1,10 +1,21 @@
-﻿<!DOCTYPE <html xmlns="http://www.w3.org/1999/xhtml">
+﻿@using ViewsExample.Models
+@{
+    string appTitle = "Asp.Net Croe Demo App";
+    Person person = new Person() { Name="jon", DateOfBirth= Convert.ToDateTime("2007-08-10") };
+}
+<!DOCTYPE <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <title>Asp.Net Core App</title>
+        @* <title>Asp.Net Core App</title> *@
+        <title>@appTitle</title>
         <meta charset="utf-8" />
     </head>
 
     <body>
-        Welcome
+    <h1>Welcome</h1>
+    <h2>Hello @person.Name</h2>
+    @{
+       double age = Math.Round((DateTime.Now - person.DateOfBirth).TotalDays / 365.25);
+    }
+    <h3>@age years old</h3>
     </body>
 </html>
