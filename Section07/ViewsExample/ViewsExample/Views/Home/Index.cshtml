@@ -17,6 +17,24 @@
         new Person() { Name="Bob", DateOfBirth = DateTime.Parse("2004-07-19"), PersonGender = Gender.Other}
     };
 }
+
+@functions{
+    //method
+    //Local Function
+    double? GetAge(DateTime? dateOfBirth)
+    {
+        if(dateOfBirth is not null)
+        {
+            return Math.Round((DateTime.Now - dateOfBirth.Value).TotalDays/365.25);
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    string Name { get; set; } = "Hello Name";
+}
 <!DOCTYPE <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         @* <title>Asp.Net Core App</title> *@
@@ -25,7 +43,7 @@
     </head>
 
     <body>
-    <h1>Welcome</h1>
+    <h1>Welcome to @Name</h1>
     <h2>Hello @person.Name</h2>
     @if (person.DateOfBirth.HasValue)
     {
@@ -61,6 +79,8 @@
             {
                 <span>,</span> 
                 @personItem.DateOfBirth
+                <span>,</span>
+                <span>@GetAge(personItem.DateOfBirth) years old</span>
             }
             <span>, </span> 
             @personItem.PersonGender 
@@ -72,14 +92,16 @@
     {
         Person person1 = people[i];
         @* <span>Hello to</span> *@
-        @:Hello to with razor
-        <text>Hello to all</text>
+       @*  @:Hello to with razor
+        <text>Hello to all</text> *@
         <div>
             @person1.Name
             @if (person1.DateOfBirth != null)
             {
                 <span>,</span>
                 @person1.DateOfBirth
+                <span>,</span>
+                <span>@GetAge(person1.DateOfBirth) years old</span>
             }
             <span>, </span>
             @person1.PersonGender
