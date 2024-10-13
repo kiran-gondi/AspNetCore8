@@ -66,6 +66,27 @@
             @personItem.PersonGender 
         </div>
     }
+    <br/>
+
+    @for (int i = 0; i < people.Count-1; i++)
+    {
+        Person person1 = people[i];
+        @* <span>Hello to</span> *@
+        @:Hello to with razor
+        <text>Hello to all</text>
+        <div>
+            @person1.Name
+            @if (person1.DateOfBirth != null)
+            {
+                <span>,</span>
+                @person1.DateOfBirth
+            }
+            <span>, </span>
+            @person1.PersonGender
+        </div>
+    }
+
+
 
     </body>
 </html>
