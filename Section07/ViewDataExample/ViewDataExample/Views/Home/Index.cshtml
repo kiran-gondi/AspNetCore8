@@ -1,0 +1,37 @@
+﻿@using ViewDataExample.Models;
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <link href="~/StyleSheet.css" rel="stylesheet"/>
+
+    <div class="page-content">
+        <h1 class="display-4">Welcome</h1>
+
+        <h2>@ViewData["appTitle"]</h2>
+
+        @{
+            List<Person>? peoples = (List<Person>)ViewData["people"];
+
+            foreach (var person in peoples)
+            {
+                <div class="box float-left w-50">
+                    <h3>@person.Name</h3>
+                    <table class="table w-100">
+                        <tbody>
+                            <tr>
+                                <td>Gender</td>
+                                <td>@person.PersonGender</td>
+                            </tr>
+                            <tr>
+                                <td>Date of Birth</td>
+                                <td>@person.DateOfBirth.Value.ToString("MM/dd/yyyy")</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            }
+        }
+    </div>
+</div>
