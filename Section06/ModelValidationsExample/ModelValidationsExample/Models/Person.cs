@@ -11,6 +11,7 @@ namespace ModelValidationsExample.Models
         [Display(Name ="Person Name")]
         [StringLength(40, MinimumLength = 3, ErrorMessage = "{0} should be between {2} and {1} characters long")]
         //[RegularExpression("^[A-Za-z .]$", ErrorMessage = "{0} should contain only alphabets, space and dot (.)")]
+        [RegularExpression("^[A-Za-z .]*$", ErrorMessage = "{0} should contain only alphabets, space and dot (.)")]
         public string? PersonName { get; set; }
 
         [EmailAddress(ErrorMessage = "{0} should be a proper email address.")]
