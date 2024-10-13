@@ -10,7 +10,7 @@ namespace ModelValidationsExample.Controllers
         //public IActionResult Index([Bind(nameof(Person.PersonName), nameof(Person.Email), 
         //    nameof(Person.Password), nameof(Person.ConfirmPassword))] Person person)
         //public IActionResult Index([FromBody][ModelBinder(BinderType = typeof(PersonModelBinder))]Person person)
-        public IActionResult Index(Person person)
+        public IActionResult Index(Person person, [FromHeader(Name ="User-Agent")]string UserAgent)
         {
             if (!ModelState.IsValid) {
                 string errors = string.Join("\n", 
@@ -25,7 +25,8 @@ namespace ModelValidationsExample.Controllers
 
                 return BadRequest(errors);
             }
-            return Content($"{person}");
+
+            return Content($"{person}, {UserAgent}");
         }
     }
 }
