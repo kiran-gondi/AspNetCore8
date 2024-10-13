@@ -1,0 +1,30 @@
+﻿@using ViewDataExample.Models
+@model Person
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Person Details</title>
+        <meta charset="utf-8"/>
+        <link href="~/StyleSheet.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <h1>Person Details</h1>
+        <h3>@Model.Name</h3>
+        <div class="page-content">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>Gender</td>
+                        <td>@Model.PersonGender</td>
+                    </tr>
+                <tr>
+                    <td>DOB</td>
+                    <td>@Model.DateOfBirth?.ToString("MM/dd/yyyy")</td>
+                </tr>
+                </tbody>
+            </table>
+            <a href="/">Back to home</a>
+        </div>
+    </body>
+</html>
