@@ -1,0 +1,16 @@
+﻿@model ListModel
+<h1>About</h1>
+
+<p>Dummy</p>
+@* <partial name="_ListPartialView" /> *@
+@* @await Html.PartialAsync("_ListPartialView") *@
+@{
+    ListModel listModel = new ListModel();
+    listModel.ListTitle = "Countries11";
+    listModel.ListItems = new List<string>()
+    {
+        "USA", "India", "Canada", "Germany"
+    };
+    // await Html.RenderPartialAsync("_ListPartialView");
+    await Html.RenderPartialAsync("_ListPartialView", listModel);
+}
