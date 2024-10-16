@@ -1,0 +1,45 @@
+﻿<h1>Home</h1>
+
+<button class="button button-blue-back" type="button" id="button-load">Load Programming Languages</button>
+<div class="box programming-languages-content">
+
+</div>
+<script type="text/javascript">
+    document.querySelector("#button-load").addEventListener("click", async function () {
+        var response = await fetch("programming-languages")
+        var languages = await response.text();
+        document.querySelector(".programming-languages-content").innerHTML = languages;
+
+        var content = document.querySelector(".programming-languages-content");
+        if (content.style.display === "none" || content.style.display === "") {
+            content.style.display = "block";
+        } else {
+            content.style.display = "none";
+        }
+    });
+</script>
+
+@* @{
+    ListModel listModel = new ListModel();
+    listModel.ListTitle = "Countries";
+    listModel.ListItems = new List<string>()
+    {
+        "USA", "India", "Canada", "Germany"
+    };
+}
+<partial name="_ListPartialView" model="listModel"></partial> *@
+
+@* @{
+    var myViewData = new ViewDataDictionary(ViewData);
+
+    myViewData["ListTitle"] = "Countries";
+    myViewData["ListItems"] = new List<string>() {
+                "USA", "India", "Canada", "Germany"
+            };
+}
+
+<div class="box">
+    <partial name="_ListPartialView" view-data="myViewData"></partial>
+</div>
+
+<h3>ListTitle in View: @ViewData["ListTitle"]</h3> *@
