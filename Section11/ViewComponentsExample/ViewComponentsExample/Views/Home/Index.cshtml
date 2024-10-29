@@ -3,4 +3,31 @@
 }
 
 <h1>Home Screen</h1>
-@await Component.InvokeAsync("Grid")
+@{
+    PersonGridModel personGridModel = new PersonGridModel()
+    {
+        GridTitle = "Persons",
+        Persons = new List<Person>
+        {
+            new Person(){ PersonName = "Will", JobTitle = "Junior" },
+            new Person(){ PersonName = "Smith", JobTitle = "Mid" },
+            new Person(){ PersonName = "Jos", JobTitle = "Senior" }
+        }
+    };
+}
+@await Component.InvokeAsync("Grid", new { grid = personGridModel })
+
+@{
+    PersonGridModel personGridModel1 = new PersonGridModel()
+            {
+                GridTitle = "Persons1",
+                Persons = new List<Person>
+        {
+            new Person(){ PersonName = "Will1", JobTitle = "Junior1" },
+            new Person(){ PersonName = "Smith1", JobTitle = "Mid1" },
+            new Person(){ PersonName = "Jos1", JobTitle = "Senior1" }
+        }
+            };
+}
+
+@await Component.InvokeAsync("Grid", new {grid = personGridModel1})
