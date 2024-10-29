@@ -6,4 +6,16 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="wwwroot\friends.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\friends.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\friends.js" />
+  </ItemGroup>
+
 </Project>
