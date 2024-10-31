@@ -6,7 +6,8 @@ namespace Services
     {
         private List<string> _cities;
 
-        public CitiesService() { 
+        public CitiesService() {
+            _serviceInstanceId = Guid.NewGuid();
             _cities = new List<string>()
             {
                 "London",
@@ -15,6 +16,13 @@ namespace Services
                 "Tokyo",
                 "Rome"
             };
+        }
+        private Guid _serviceInstanceId;
+        public Guid ServiceInstanceId { 
+            get
+            {
+                return _serviceInstanceId;
+            }
         }
 
         public List<string> GetCities()
