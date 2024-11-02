@@ -44,5 +44,12 @@ namespace ServiceContracts
         /// <param name="sortOrder"></param>
         /// <returns>Returns sorted persons as List<PersonResponse></returns>
         List<PersonResponse> GetSortedPersons(List<PersonResponse> allPersons, string sortBy, SortOrderOptions sortOrder);
+
+        /// <summary>
+        /// Updates the specified person details based on the give person ID
+        /// </summary>
+        /// <param name="personUpdateRequest">Person details to update, incuding the person id</param>
+        /// <returns>PersonResponse</returns>
+        PersonResponse UpdatePerson(PersonUpdateRequest? personUpdateRequest);
     }
 }
