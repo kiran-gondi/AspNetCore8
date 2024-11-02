@@ -42,7 +42,7 @@ namespace Services
             Person person = personAddRequest.ToPerson();
 
             //generate personid
-            person.PersonID = new Guid();
+            person.PersonID = Guid.NewGuid();
 
             //add person object to persons list
             _persons.Add(person);
@@ -53,7 +53,7 @@ namespace Services
 
         public List<PersonResponse> GetAllPersons()
         {
-            throw new NotImplementedException();
+            return _persons.Select(x=>x.ToPersonResponse()).ToList();
         }
 
         public PersonResponse? GetPersonByPersonID(Guid? personID)
