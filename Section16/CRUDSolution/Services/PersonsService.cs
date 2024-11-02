@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Microsoft.VisualBasic;
 using ServiceContracts;
 using ServiceContracts.DTO;
 using ServiceContracts.Enums;
@@ -124,7 +125,8 @@ namespace Services
 
         public List<PersonResponse> GetAllPersons()
         {
-            return _persons.Select(x=>x.ToPersonResponse()).ToList();
+            //return _persons.Select(x=>x.ToPersonResponse()).ToList();
+            return _persons.Select(x=>ConvertPersonToPersonReponse(x)).ToList();
         }
 
         public PersonResponse? GetPersonByPersonID(Guid? personID)
@@ -135,7 +137,8 @@ namespace Services
 
             if(person == null) return null;
 
-            return person.ToPersonResponse();
+            //return person.ToPersonResponse();
+            return ConvertPersonToPersonReponse(person);
         }
 
         public List<PersonResponse> GetFilteredPersons(string searchBy, string? searchString)
@@ -266,7 +269,7 @@ namespace Services
             matchingPerson.Address = personUpdateRequest.Address;
             matchingPerson.ReceiveNewsLetters = personUpdateRequest.ReceiveNewsLetters;
 
-            return matchingPerson.ToPersonResponse();
+            return ConvertPersonToPersonReponse(matchingPerson);
         }
 
         public bool DeletePerson(Guid? personID)
