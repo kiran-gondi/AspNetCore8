@@ -59,7 +59,8 @@ namespace CRUDExample.Controllers
         }
 
         [HttpPost]
-        [Route("persons/create")]
+        //[Route("persons/create")]
+        [Route("[action]")]
         public IActionResult Create(PersonAddRequest personAddRequest)
         {
             if (!ModelState.IsValid)
