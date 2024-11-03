@@ -18,6 +18,8 @@
             <div class="flex-1">
                 @* <input type="text" id="PersonName" name="PersonName" class="form-input"/> *@
                 <input asp-for="PersonName" class="form-input" />
+                <span asp-validation-for="PersonName" class="text-red"></span>
+
             </div>
         </div>
 
@@ -29,6 +31,7 @@
             <div class="flex-1">
                 @* <input type="email" id="Email" name="Email" class="form-input" /> *@
                 <input asp-for="Email" class="form-input"/>
+                <span asp-validation-for="Email" class="text-red"></span>
             </div>
         </div>
 
@@ -40,6 +43,7 @@
             <div class="flex-1">
                 @* <input type="date" id="DateOfBirth" name="DateOfBirth" class="form-input" /> *@
                 <input asp-for="DateOfBirth" class="form-input" />
+                <span asp-validation-for="DateOfBirth" class="text-red"></span>
             </div>
         </div>
 
@@ -56,6 +60,7 @@
                         <input type="radio" asp-for="Gender" value="@gender"/>
                         <label for="@gender">@gender</label>
                     }
+                    <span asp-validation-for="Gender" class="text-red"></span>
                 }
 
                 @* <input type="radio" id="Male" name="Gender" value="Male" class="ml"/>
@@ -82,6 +87,7 @@
                 <select asp-for="CountryID" class="form-input" asp-items="@ViewBag.AllCountries">
                     <option value="">Please select</option>
                 </select>
+                <span asp-validation-for="CountryID" class="text-red"></span>
             </div>
         </div>
 
@@ -93,6 +99,7 @@
             <div class="flex-1">
                 @* <textarea type="date" id="Address" name="Address" class="form-input"></textarea> *@
                 <textarea asp-for="Address" class="form-input"></textarea>
+                <span asp-validation-for="Address" class="text-red"></span>
             </div>
         </div>
 
@@ -106,6 +113,7 @@
 
                 <input asp-for="ReceiveNewsLetters" value="true" />
                 <label asp-for="ReceiveNewsLetters" class="form-label">Receive News Letters</label>
+                <span asp-validation-for="ReceiveNewsLetters" class="text-red"></span>
             </div>
         </div>
 
@@ -115,6 +123,8 @@
             </div>
             <div class="flex-1">
                 <button class="button button-green-back">Create</button>
+
+                <div asp-validation-summary="All" class="text-red"></div>
 
                 @if(ViewBag.Errors!=null){
                  <div class="text-red ml">
@@ -129,3 +139,8 @@
         </div>
     </form>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.4/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+
