@@ -2,11 +2,11 @@
     ViewBag.Title = "Create Person";
 }
 
-<a href="~/persons/index" class="link-hover">Back to Persons List</a>
+<a asp-controller="persons" asp-action="index" class="link-hover">Back to Persons List</a>
 <h2>Create Person</h2>
 
 <div class="w-50">
-    <form action="~/persons/create" method="post">
+    <form asp-controller="persons" asp-action="create" method="post">
 
         @* Person Name *@
         <div class="form-field flex">
