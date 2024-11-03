@@ -5,7 +5,7 @@ var app = builder.Build();
 
 app.UseStaticFiles();
 app.UseRouting();
-app.UseEndpoints(endpoints =>
+/*app.UseEndpoints(endpoints =>
 {
     endpoints.Map("/", async context =>
     {
@@ -13,7 +13,7 @@ app.UseEndpoints(endpoints =>
         await context.Response.WriteAsync(app.Configuration.GetValue<string>("Mykey") + "\n");
         await context.Response.WriteAsync(app.Configuration.GetValue<int>("x", 10) + "\n");
     });
-});
+});*/
 
 app.MapControllers();
 
