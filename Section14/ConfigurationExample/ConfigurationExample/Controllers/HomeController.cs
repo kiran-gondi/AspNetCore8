@@ -20,9 +20,21 @@ namespace ConfigurationExample.Controllers
             ViewBag.ClientID = _configuration["weatherapi:ClientID"];
             ViewBag.ClientSecret = _configuration.GetValue("weatherapi:ClientSecret", "the default key");*/
 
-            IConfiguration? weatherApiSection = _configuration.GetSection("weatherapi");
+            /*IConfiguration? weatherApiSection = _configuration.GetSection("weatherapi");
             ViewBag.ClientID = weatherApiSection["ClientID"];
-            ViewBag.ClientSecret = weatherApiSection["ClientSecret"]; ;
+            ViewBag.ClientSecret = weatherApiSection["ClientSecret"]; */
+
+            //Bind: Loads configuration values into a new weatherApiOptions object.
+            /*WeatherApiOptions? weatherApiOptions = _configuration.GetSection("weatherapi").Get<WeatherApiOptions>();
+            ViewBag.ClientID = weatherApiOptions.ClientID;
+            ViewBag.ClientSecret = weatherApiOptions.ClientSecret;*/
+
+            //Bind: Loads configuration values into an existing weatherApiOptions object.
+            WeatherApiOptions weatherApiOptions = new WeatherApiOptions();
+            _configuration.GetSection("weatherapi").Bind(weatherApiOptions);
+
+            ViewBag.ClientID = weatherApiOptions.ClientID;
+            ViewBag.ClientSecret = weatherApiOptions.ClientSecret;
 
             return View();
         }
