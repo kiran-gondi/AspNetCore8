@@ -1,4 +1,5 @@
 ﻿using CsvHelper;
+using CsvHelper.Configuration;
 using Entities;
 using Microsoft.EntityFrameworkCore;
 using ServiceContracts;
@@ -228,13 +229,44 @@ namespace Services
         {
             MemoryStream memoryStream = new MemoryStream();
             StreamWriter streamWriter = new StreamWriter(memoryStream);
-            CsvWriter csvWriter = new CsvWriter(streamWriter, CultureInfo.InvariantCulture, leaveOpen: true);
 
-            csvWriter.WriteHeader<PersonResponse>();//PersonID,PersonName,...
+            CsvConfiguration csvConfiguration = new CsvConfiguration(CultureInfo.CurrentCulture);
+
+            //CsvWriter csvWriter = new CsvWriter(streamWriter, CultureInfo.InvariantCulture, leaveOpen: true);
+            CsvWriter csvWriter = new CsvWriter(streamWriter, csvConfiguration);
+
+            //csvWriter.WriteHeader<PersonResponse>();//PersonID,PersonName,...
+            csvWriter.WriteField(nameof(PersonResponse.PersonName));
+            csvWriter.WriteField(nameof(PersonResponse.Email));
+            csvWriter.WriteField(nameof(PersonResponse.DateOfBirth));
+            csvWriter.WriteField(nameof(PersonResponse.Age));
+            //csvWriter.WriteField(nameof(PersonResponse.Gender));
+            csvWriter.WriteField(nameof(PersonResponse.Country));
+            csvWriter.WriteField(nameof(PersonResponse.Address));
+            csvWriter.WriteField(nameof(PersonResponse.ReceiveNewsLetters));
+
             csvWriter.NextRecord();
+
             List<PersonResponse> persons = _dbContext.Persons.Include("Country").Select(x=>x.ToPersonResponse()).ToList();
-            
-            await csvWriter.WriteRecordsAsync(persons);
+
+            foreach (var person in persons)
+            {
+                csvWriter.WriteField(person.PersonName);
+                csvWriter.WriteField(person.Email);
+                if (person.DateOfBirth.HasValue)
+                    csvWriter.WriteField(person.DateOfBirth.Value.ToString("yyyy-MM-dd"));
+                else
+                    csvWriter.WriteField("");
+                csvWriter.WriteField(person.Age);
+                //csvWriter.WriteField(person.Gender);
+                csvWriter.WriteField(person.Country);
+                csvWriter.WriteField(person.Address);
+                csvWriter.WriteField(person.ReceiveNewsLetters);
+                csvWriter.NextRecord();
+                csvWriter.Flush();
+            }
+
+            //await csvWriter.WriteRecordsAsync(persons);
             //1,abc,........
 
             memoryStream.Position = 0;
