@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Microsoft.EntityFrameworkCore;
 using ServiceContracts;
 using ServiceContracts.DTO;
 
@@ -14,7 +15,7 @@ namespace Services
             _dbContext = personsDbContext;
         }
 
-        public CountryResponse AddCountry(CountryAddRequest? countryAddRequest)
+        public async Task<CountryResponse> AddCountry(CountryAddRequest? countryAddRequest)
         {
             //Validation: countryAddRequest parameter can't be null
             if(countryAddRequest == null)
@@ -28,7 +29,7 @@ namespace Services
             }
 
             //Validation: CountryName can't be duplicate
-            if(_dbContext.Countries.Count(x=>x.CountryName == countryAddRequest.CountryName) > 0)
+            if(await _dbContext.Countries.CountAsync(x=>x.CountryName == countryAddRequest.CountryName) > 0)
             {
                 throw new ArgumentException("Given country name already exists");
             }
@@ -41,21 +42,21 @@ namespace Services
 
             //Add country object into countries.
             _dbContext.Countries.Add(country);
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
 
             return country.ToCountryResponse();
         }
 
-        public List<CountryResponse> GetAllCountries()
+        public async Task<List<CountryResponse>> GetAllCountries()
         {
-            return _dbContext.Countries.Select(country => country.ToCountryResponse()).ToList();
+            return await _dbContext.Countries.Select(country => country.ToCountryResponse()).ToListAsync();
         }
 
-        public CountryResponse? GetCountryByCountryId(Guid? CountryID)
+        public async Task<CountryResponse?> GetCountryByCountryId(Guid? CountryID)
         {
             if (CountryID == null) { return null; }
 
-            Country? countryResponse = _dbContext.Countries.FirstOrDefault(temp => temp.CountryID == CountryID);
+            Country? countryResponse = await _dbContext.Countries.FirstOrDefaultAsync(temp => temp.CountryID == CountryID);
 
             if (countryResponse == null)
             {
