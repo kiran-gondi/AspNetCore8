@@ -171,5 +171,13 @@ namespace CRUDExample.Controllers
            MemoryStream memoryStream =  await _personService.GetPersonsCSV();
             return File(memoryStream, "application/octet-stream", "persons.csv");
         }
+
+        [Route("PersonsExcel")]
+        public async Task<IActionResult> PersonsExcel()
+        {
+            MemoryStream memoryStream = await _personService.GetPersonsExcel();
+            //return File(memoryStream, "application/vnd.ms-excel", "persons.xlsx");//application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+            return File(memoryStream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "persons.xlsx");//application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+        }
     }
 }
