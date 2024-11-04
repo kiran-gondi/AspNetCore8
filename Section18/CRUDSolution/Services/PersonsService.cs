@@ -1,9 +1,11 @@
-﻿using Entities;
+﻿using CsvHelper;
+using Entities;
 using Microsoft.EntityFrameworkCore;
 using ServiceContracts;
 using ServiceContracts.DTO;
 using ServiceContracts.Enums;
 using Services.Helpers;
+using System.Globalization;
 
 namespace Services
 {
@@ -221,6 +223,22 @@ namespace Services
 
             return true;
         }
-        
+
+        public async Task<MemoryStream> GetPersonsCSV()
+        {
+            MemoryStream memoryStream = new MemoryStream();
+            StreamWriter streamWriter = new StreamWriter(memoryStream);
+            CsvWriter csvWriter = new CsvWriter(streamWriter, CultureInfo.InvariantCulture, leaveOpen: true);
+
+            csvWriter.WriteHeader<PersonResponse>();//PersonID,PersonName,...
+            csvWriter.NextRecord();
+            List<PersonResponse> persons = _dbContext.Persons.Include("Country").Select(x=>x.ToPersonResponse()).ToList();
+            
+            await csvWriter.WriteRecordsAsync(persons);
+            //1,abc,........
+
+            memoryStream.Position = 0;
+            return memoryStream;
+        }
     }
 }
