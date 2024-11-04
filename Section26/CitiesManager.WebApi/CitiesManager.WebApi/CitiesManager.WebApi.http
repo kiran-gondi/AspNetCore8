@@ -1,0 +1,6 @@
+@CitiesManager.WebApi_HostAddress = http://localhost:5145
+
+GET {{CitiesManager.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
