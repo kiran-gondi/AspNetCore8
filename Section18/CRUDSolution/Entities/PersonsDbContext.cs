@@ -21,6 +21,21 @@ namespace Entities
 
             SeedCountries(modelBuilder);
             SeedPersons(modelBuilder);
+
+            //Fluent API
+            modelBuilder.Entity<Person>().Property(temp => temp.TIN)
+                .HasColumnName("TIN")
+                .HasColumnType("varchar(8)")
+                .HasDefaultValue("ABC12345");
+
+            //modelBuilder.Entity<Person>().HasIndex(temp => temp.TIN).IsUnique();
+
+            /*Obsolete
+             * modelBuilder.Entity<Person>()
+                .HasCheckConstraint("CHK_TIN", "len([TIN]) = 8");  */
+
+            //Check Constraints
+            modelBuilder.Entity<Person>().ToTable(x => x.HasCheckConstraint("CHK_TIN", "len([TIN]) = 8"));
         }
 
         private static void SeedCountries(ModelBuilder modelBuilder)
