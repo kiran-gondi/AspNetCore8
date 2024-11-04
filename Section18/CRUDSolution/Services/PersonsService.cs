@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Microsoft.EntityFrameworkCore;
 using ServiceContracts;
 using ServiceContracts.DTO;
 using ServiceContracts.Enums;
@@ -15,13 +16,6 @@ namespace Services
         {
             _dbContext = personsDbContext;
             _countriesService = countriesService;
-        }
-
-        private PersonResponse ConvertPersonToPersonReponse(Person person)
-        {
-            PersonResponse personResponse = person.ToPersonResponse();
-            personResponse.Country = _countriesService.GetCountryByCountryId(person.CountryID)?.CountryName;
-            return personResponse;
         }
 
         public PersonResponse AddPerson(PersonAddRequest? personAddRequest)
@@ -51,26 +45,30 @@ namespace Services
             _dbContext.sp_InsertPerson(person);
 
             //Convert the Person object into PersonResponse type
-            return ConvertPersonToPersonReponse(person);
+            return person.ToPersonResponse();
         }
 
         public List<PersonResponse> GetAllPersons()
         {
             //return _persons.Select(x=>x.ToPersonResponse()).ToList();
-            //return _dbContext.Persons.ToList().Select(x=>ConvertPersonToPersonReponse(x)).ToList();
-            return _dbContext.sp_GetAllPersons().Select(x=>ConvertPersonToPersonReponse(x)).ToList();
+
+            /*var persons = _dbContext.Persons.ToList();
+            var persons = _dbContext.Persons.Include("Country").ToList();*/
+            var persons = _dbContext.Persons.Include("Country").ToList();
+            //return persons.Select(x=>ConvertPersonToPersonReponse(x)).ToList();
+            return persons.Select(x=> x.ToPersonResponse()).ToList();
+            //return _dbContext.sp_GetAllPersons().Select(x=>ConvertPersonToPersonReponse(x)).ToList();
         }
 
         public PersonResponse? GetPersonByPersonID(Guid? personID)
         {
             if (personID == null) return null;
 
-            Person? person = _dbContext.Persons.FirstOrDefault(temp => temp.PersonID == personID);
+            Person? person = _dbContext.Persons.Include("Country").FirstOrDefault(temp => temp.PersonID == personID);
 
-            if(person == null) return null;
+            if (person == null) return null;
 
-            //return person.ToPersonResponse();
-            return ConvertPersonToPersonReponse(person);
+            return person.ToPersonResponse();
         }
 
         public List<PersonResponse> GetFilteredPersons(string searchBy, string? searchString)
@@ -204,7 +202,7 @@ namespace Services
             
             _dbContext.SaveChanges(); //UPDATE
 
-            return ConvertPersonToPersonReponse(matchingPerson);
+            return matchingPerson.ToPersonResponse();
         }
 
         public bool DeletePerson(Guid? personID)

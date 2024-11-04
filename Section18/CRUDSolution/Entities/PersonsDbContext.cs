@@ -36,6 +36,13 @@ namespace Entities
 
             //Check Constraints
             modelBuilder.Entity<Person>().ToTable(x => x.HasCheckConstraint("CHK_TIN", "len([TIN]) = 8"));
+
+            //Table Relations
+            /*modelBuilder.Entity<Person>(entity =>
+            {
+                entity.HasOne(x => x.Country).WithMany(p => p.Persons)
+                .HasForeignKey(p=>p.CountryID);
+            });*/
         }
 
         private static void SeedCountries(ModelBuilder modelBuilder)
