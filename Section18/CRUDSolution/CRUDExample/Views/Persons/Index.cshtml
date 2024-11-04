@@ -92,6 +92,13 @@
                 {"DisplayName", "Receive News Letters"},
                 })
 
+                @await Html.PartialAsync("_GridColumnHeader",
+                         new ViewDataDictionary(ViewData)
+                {
+                {"ColumnName", nameof(PersonResponse.Tin) },
+                {"DisplayName", "TIN"},
+                })
+
                 <th class="w-100">Options</th>
         </tr>
     </thead>
@@ -107,6 +114,7 @@
                 <td style="width:10%">@person.Country</td>
                 <td style="width:10%">@person.Address</td>
                 <td style="width:5%">@person.ReceiveNewsLetters</td>
+                    <td style="width:10%">@person.Tin</td>
                 <td style="width:20%">
                     <a asp-controller="persons" asp-action="Edit" asp-route-personID="@person.PersonID">Edit</a>
                     @* /Persons/Edit/1 *@

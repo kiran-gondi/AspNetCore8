@@ -200,6 +200,7 @@ namespace Services
             matchingPerson.Gender = personUpdateRequest.Gender.ToString();
             matchingPerson.Address = personUpdateRequest.Address;
             matchingPerson.ReceiveNewsLetters = personUpdateRequest.ReceiveNewsLetters;
+            matchingPerson.TIN = personUpdateRequest.Tin;
             
             _dbContext.SaveChanges(); //UPDATE
 

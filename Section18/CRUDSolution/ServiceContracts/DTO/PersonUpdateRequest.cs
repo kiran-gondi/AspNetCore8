@@ -21,6 +21,7 @@ namespace ServiceContracts.DTO
         public Guid? CountryID { get; set; }
         public string? Address { get; set; }
         public bool ReceiveNewsLetters { get; set; }
+        public string? Tin { get; set; }
 
         /// <summary>
         /// Converts the current object of PersonUpdateRequest into a new object of Person type
@@ -37,7 +38,8 @@ namespace ServiceContracts.DTO
                 Gender = Gender.ToString(),
                 CountryID = CountryID,
                 Address = Address,
-                ReceiveNewsLetters = ReceiveNewsLetters
+                ReceiveNewsLetters = ReceiveNewsLetters,
+                TIN = Tin
             };
         }
     }
