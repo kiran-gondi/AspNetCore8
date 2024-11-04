@@ -18,6 +18,7 @@ namespace ServiceContracts.DTO
         public string? Address { get; set; }
         public bool ReceiveNewsLetters { get; set; }
         public double? Age { get; set; }
+        public string? Tin { get; set; }
 
         public override bool Equals(object? obj)
         {
@@ -28,7 +29,7 @@ namespace ServiceContracts.DTO
             PersonResponse person = (PersonResponse)obj;
             return PersonID == person.PersonID && PersonName == person.PersonName && Email == person.Email 
                 && DateOfBirth == person.DateOfBirth && Gender == person.Gender && CountryID == person.CountryID 
-                && Address == person.Address && ReceiveNewsLetters == person.ReceiveNewsLetters;
+                && Address == person.Address && ReceiveNewsLetters == person.ReceiveNewsLetters && Tin == person.Tin;
 
         }
 
@@ -40,7 +41,8 @@ namespace ServiceContracts.DTO
         public override string ToString()
         {
             return $"Person ID: {PersonID}, Person Name: {PersonName}, Email: {Email}, Date Of Birth: {DateOfBirth?.ToString("dd MMM yyyy")}," +
-                $"Gender: {Gender}, Country ID: {CountryID}, Country: {Country}, Address: {Address}, Receive News Letters: {ReceiveNewsLetters}";
+                $"Gender: {Gender}, Country ID: {CountryID}, Country: {Country}, Address: {Address}, Receive News Letters: {ReceiveNewsLetters}, " +
+                $"Tin: {Tin}";
         }
 
         public PersonUpdateRequest ToPersonUpdateRequest()
@@ -49,7 +51,7 @@ namespace ServiceContracts.DTO
             {
                 PersonID = PersonID, PersonName = PersonName, Email = Email, DateOfBirth = DateOfBirth, Address = Address,
                 Gender= (GenderOptions)Enum.Parse(typeof(GenderOptions), Gender, true), CountryID = CountryID, 
-                ReceiveNewsLetters = ReceiveNewsLetters
+                ReceiveNewsLetters = ReceiveNewsLetters, Tin = Tin
             };
         }
     }
@@ -69,7 +71,8 @@ namespace ServiceContracts.DTO
                 Address = person.Address,
                 ReceiveNewsLetters = person.ReceiveNewsLetters,
                 Age = (person.DateOfBirth != null) ?
-                Math.Round((DateTime.Now - person.DateOfBirth.Value).TotalDays / 365.25) : null
+                Math.Round((DateTime.Now - person.DateOfBirth.Value).TotalDays / 365.25) : null,
+                Tin = person.TIN
             };
         }
     }
