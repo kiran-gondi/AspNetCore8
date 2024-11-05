@@ -5,9 +5,8 @@ using CitiesManager.WebApi.Models;
 
 namespace CitiesManager.WebApi.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class CitiesController : ControllerBase
+    
+    public class CitiesController : CustomControllerBase
     {
         private readonly ApplicationDbContext _context;
 
