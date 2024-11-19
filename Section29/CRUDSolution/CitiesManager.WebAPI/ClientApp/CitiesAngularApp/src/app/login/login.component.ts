@@ -34,11 +34,13 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.accountService.postLogin(this.loginForm.value).subscribe({
 
-        next: (response: LoginUser) => {
+        next: (response: any) => {
           console.log(response);
-
+          //debugger;
           this.isLoginFormSubmitted = false;
           this.accountService.currentUserName = response.email;
+          localStorage["token"] = response.token;
+
           this.router.navigate(['/cities']);
 
           this.loginForm.reset();
