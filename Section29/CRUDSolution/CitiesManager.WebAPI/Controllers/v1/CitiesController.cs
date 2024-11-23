@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using CitiesManager.Infrastructure.DatabaseContext;
 using CitiesManager.Core.Models;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CitiesManager.WebAPI.Controllers.v1
 {
@@ -28,6 +29,7 @@ namespace CitiesManager.WebAPI.Controllers.v1
   /// </summary>
   /// <returns></returns>
   [HttpGet]
+ 
   //[Produces("application/xml")]
   public async Task<ActionResult<IEnumerable<City>>> GetCities()
   {
