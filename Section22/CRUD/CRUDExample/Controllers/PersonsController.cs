@@ -116,7 +116,7 @@ namespace CRUDExample.Controllers
   [HttpPost]
   [Route("[action]/{personID}")]
   [TypeFilter(typeof(PersonCreateAndEditPostActionFilter))]
-  [TypeFilter(typeof(TokenAuthorizationFilter))]
+  //[TypeFilter(typeof(TokenAuthorizationFilter))]
   public async Task<IActionResult> Edit(PersonUpdateRequest personRequest)
   {
    PersonResponse? personResponse = await _personsService.GetPersonByPersonID(personRequest.PersonID);
@@ -126,6 +126,7 @@ namespace CRUDExample.Controllers
     return RedirectToAction("Index");
    }
 
+   personRequest.PersonID = new Guid();
    PersonResponse updatedPerson = await _personsService.UpdatePerson(personRequest);
    return RedirectToAction("Index");
   }
