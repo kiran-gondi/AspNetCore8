@@ -30,7 +30,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
  options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-
+builder.Services.AddHttpLogging(options =>
+{
+    options.LoggingFields = Microsoft.AspNetCore.HttpLogging.HttpLoggingFields.RequestProperties |
+                            Microsoft.AspNetCore.HttpLogging.HttpLoggingFields.ResponsePropertiesAndHeaders;
+});
 
 var app = builder.Build();
 
@@ -39,6 +43,8 @@ if (builder.Environment.IsDevelopment())
 {
  app.UseDeveloperExceptionPage();
 }
+
+app.UseHttpLogging();
 
 //app.Logger.LogDebug("debug-message");
 //app.Logger.LogInformation("information-message");
