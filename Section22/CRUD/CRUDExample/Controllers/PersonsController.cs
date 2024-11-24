@@ -126,7 +126,7 @@ namespace CRUDExample.Controllers
     return RedirectToAction("Index");
    }
 
-   personRequest.PersonID = new Guid();
+   //personRequest.PersonID = new Guid();
    PersonResponse updatedPerson = await _personsService.UpdatePerson(personRequest);
    return RedirectToAction("Index");
   }
