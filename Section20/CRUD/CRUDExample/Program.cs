@@ -4,17 +4,28 @@ using Microsoft.EntityFrameworkCore;
 using Entities;
 using RepositoryContracts;
 using Repositories;
+using Serilog;
+using Serilog.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 //Logging
-builder.Host.ConfigureLogging(loggingProvider => {
+/*builder.Host.ConfigureLogging(loggingProvider => {
  loggingProvider.ClearProviders();
  loggingProvider.AddConsole();
  loggingProvider.AddDebug();
  loggingProvider.AddEventLog();
-});
+});*/
 
+//Serilog
+builder.Host.UseSerilog((HostBuilderContext context, 
+    IServiceProvider services, 
+    LoggerConfiguration loggerConfiguration) =>
+    {
+        loggerConfiguration.ReadFrom.Configuration(context.Configuration) //read configuration settings from
+                                                                          //built-in IConfiguration
+        .ReadFrom.Services(services); //read out current app services and make them available to serilog
+    });
 
 builder.Services.AddControllersWithViews();
 
