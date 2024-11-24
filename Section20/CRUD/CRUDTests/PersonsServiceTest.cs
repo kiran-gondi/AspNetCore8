@@ -17,6 +17,7 @@ using RepositoryContracts;
 using Moq;
 using System.Linq.Expressions;
 using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace CRUDTests
 {
@@ -30,7 +31,8 @@ namespace CRUDTests
 
   private readonly ITestOutputHelper _testOutputHelper;
   private readonly IFixture _fixture;
-  private ILogger<PersonsService> _loggerPerson;
+        private readonly IDiagnosticContext _diagnosticContext;
+        private ILogger<PersonsService> _loggerPerson;
 
   //constructor
   public PersonsServiceTest(ITestOutputHelper testOutputHelper)
@@ -39,7 +41,7 @@ namespace CRUDTests
    _personRepositoryMock = new Mock<IPersonsRepository>();
    _personsRepository = _personRepositoryMock.Object;
 
-   _personService = new PersonsService(_personsRepository, _loggerPerson);
+   _personService = new PersonsService(_personsRepository, _loggerPerson, _diagnosticContext);
 
    _testOutputHelper = testOutputHelper;
   }
