@@ -16,6 +16,7 @@ using FluentAssertions;
 using RepositoryContracts;
 using Moq;
 using System.Linq.Expressions;
+using Microsoft.Extensions.Logging;
 
 namespace CRUDTests
 {
@@ -29,6 +30,7 @@ namespace CRUDTests
 
   private readonly ITestOutputHelper _testOutputHelper;
   private readonly IFixture _fixture;
+  private ILogger<PersonsService> _loggerPerson;
 
   //constructor
   public PersonsServiceTest(ITestOutputHelper testOutputHelper)
@@ -37,7 +39,7 @@ namespace CRUDTests
    _personRepositoryMock = new Mock<IPersonsRepository>();
    _personsRepository = _personRepositoryMock.Object;
 
-   _personService = new PersonsService(_personsRepository);
+   _personService = new PersonsService(_personsRepository, _loggerPerson);
 
    _testOutputHelper = testOutputHelper;
   }
