@@ -8,9 +8,7 @@ using Services;
 using ServiceContracts.Enums;
 using Xunit.Abstractions;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
-using EntityFrameworkCoreMock;
 using AutoFixture;
 using FluentAssertions;
 using RepositoryContracts;
@@ -21,7 +19,7 @@ using Serilog;
 
 namespace CRUDTests
 {
- public class PersonsServiceTest
+    public class PersonsServiceTest
  {
   //private fields
   private readonly IPersonsService _personService;
@@ -31,8 +29,6 @@ namespace CRUDTests
 
   private readonly ITestOutputHelper _testOutputHelper;
   private readonly IFixture _fixture;
-        private readonly IDiagnosticContext _diagnosticContext;
-        private ILogger<PersonsService> _loggerPerson;
 
   //constructor
   public PersonsServiceTest(ITestOutputHelper testOutputHelper)
@@ -40,8 +36,10 @@ namespace CRUDTests
    _fixture = new Fixture();
    _personRepositoryMock = new Mock<IPersonsRepository>();
    _personsRepository = _personRepositoryMock.Object;
+   var loggerMock = new Mock<ILogger<PersonsService>>();
+   var diagnosticContextMock = new Mock<IDiagnosticContext>();
 
-   _personService = new PersonsService(_personsRepository, _loggerPerson, _diagnosticContext);
+   _personService = new PersonsService(_personsRepository, loggerMock.Object, diagnosticContextMock.Object);
 
    _testOutputHelper = testOutputHelper;
   }
