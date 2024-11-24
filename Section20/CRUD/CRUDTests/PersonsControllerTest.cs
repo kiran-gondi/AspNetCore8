@@ -10,6 +10,7 @@ using CRUDExample.Controllers;
 using ServiceContracts.DTO;
 using ServiceContracts.Enums;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace CRUDTests
 {
@@ -22,6 +23,7 @@ namespace CRUDTests
   private readonly Mock<IPersonsService> _personsServiceMock;
 
   private readonly Fixture _fixture;
+  private ILogger<PersonsController> _loggerService;
 
   public PersonsControllerTest()
   {
@@ -42,7 +44,7 @@ namespace CRUDTests
    //Arrange
    List<PersonResponse> persons_response_list = _fixture.Create<List<PersonResponse>>();
 
-   PersonsController personsController = new PersonsController(_personsService, _countriesService);
+   PersonsController personsController = new PersonsController(_personsService, _countriesService, _loggerService);
 
    _personsServiceMock
     .Setup(temp => temp.GetFilteredPersons(It.IsAny<string>(), It.IsAny<string>()))
@@ -84,7 +86,7 @@ namespace CRUDTests
     .Setup(temp => temp.AddPerson(It.IsAny<PersonAddRequest>()))
     .ReturnsAsync(person_response);
 
-   PersonsController personsController = new PersonsController(_personsService, _countriesService);
+   PersonsController personsController = new PersonsController(_personsService, _countriesService, _loggerService);
 
 
    //Act
@@ -119,7 +121,7 @@ namespace CRUDTests
     .Setup(temp => temp.AddPerson(It.IsAny<PersonAddRequest>()))
     .ReturnsAsync(person_response);
 
-   PersonsController personsController = new PersonsController(_personsService, _countriesService);
+   PersonsController personsController = new PersonsController(_personsService, _countriesService, _loggerService);
 
 
    //Act

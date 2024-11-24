@@ -39,7 +39,7 @@ namespace Entities
 
    //Fluent API
    modelBuilder.Entity<Person>().Property(temp => temp.TIN)
-     .HasColumnName("TaxIdentificationNumber")
+     .HasColumnName("TIN")
      .HasColumnType("varchar(8)")
      .HasDefaultValue("ABC12345");
 
@@ -47,7 +47,7 @@ namespace Entities
    //  .HasIndex(temp => temp.TIN).IsUnique();
 
    modelBuilder.Entity<Person>()
-     .HasCheckConstraint("CHK_TIN", "len([TaxIdentificationNumber]) = 8");
+     .HasCheckConstraint("CHK_TIN", "len([TIN]) = 8");
 
    //Table Relations
    modelBuilder.Entity<Person>(entity =>

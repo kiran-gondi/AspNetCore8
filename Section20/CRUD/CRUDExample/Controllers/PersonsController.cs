@@ -17,7 +17,8 @@ namespace CRUDExample.Controllers
   private readonly ILogger<PersonsController> _logger;
 
   //constructor
-  public PersonsController(IPersonsService personsService, ICountriesService countriesService, ILogger<PersonsController> logger)
+  public PersonsController(IPersonsService personsService, ICountriesService countriesService, 
+      ILogger<PersonsController> logger)
   {
    _personsService = personsService;
    _countriesService = countriesService;
