@@ -19,8 +19,12 @@ namespace CitiesManager.WebAPI.Controllers
    _context = context;
   }
 
-  // GET: api/Cities
-  [HttpGet]
+// GET: api/Cities
+/// <summary>
+/// To get list of  cities (including city id and city name) from 'cities' table
+/// </summary>
+/// <returns></returns>
+[HttpGet]
   public async Task<ActionResult<IEnumerable<City>>> GetCities()
   {
    var cities = await _context.Cities
@@ -29,8 +33,13 @@ namespace CitiesManager.WebAPI.Controllers
   }
 
 
-  // GET: api/Cities/5
-  [HttpGet("{cityID}")]
+// GET: api/Cities/5
+/// <summary>
+/// GET: api/Cities/5
+/// </summary>
+/// <param name="cityID"></param>
+/// <returns></returns>
+[HttpGet("{cityID}")]
   public async Task<ActionResult<City>> GetCity(Guid cityID)
   {
    var city = await _context.Cities.FirstOrDefaultAsync(temp => temp.CityID == cityID);
