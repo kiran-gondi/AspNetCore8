@@ -14,9 +14,20 @@ builder.Services.AddControllers(options =>
 })
     .AddXmlSerializerFormatters();
 
+//Enable versioning in Web API Controllers
 builder.Services.AddApiVersioning(config =>
 {
     config.ApiVersionReader = new UrlSegmentApiVersionReader();
+    //Reads version number from request url at "apiVersion" constraint
+
+    //config.ApiVersionReader = new QueryStringApiVersionReader();
+    //Reads version number from request query string called "api-Version"
+
+    //config.ApiVersionReader = new HeaderApiVersionReader("api-version");
+    //Reads version number from request header called "api-Version" Ex: api-version: 1.0
+
+    config.DefaultApiVersion = new ApiVersion(1, 0);
+    config.AssumeDefaultVersionWhenUnspecified = true;
 });
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
