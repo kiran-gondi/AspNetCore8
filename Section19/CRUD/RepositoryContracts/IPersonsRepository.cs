@@ -13,7 +13,7 @@ namespace RepositoryContracts
         Task<Person> AddPerson(Person person);
         Task<List<Person>> GetAllPersons();
 
-        Task<Person> GetPersonByPersonID(Guid personID);
+        Task<Person?> GetPersonByPersonID(Guid personID);
 
         /// <summary>
         /// Returns all person objects based on the give expression
