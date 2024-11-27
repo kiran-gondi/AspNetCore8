@@ -29,10 +29,13 @@ if (builder.Environment.IsDevelopment())
  app.UseDeveloperExceptionPage();
 }
 
-Rotativa.AspNetCore.RotativaConfiguration.Setup("wwwroot", wkhtmltopdfRelativePath: "Rotativa");
+if(!builder.Environment.IsEnvironment("Test"))
+    Rotativa.AspNetCore.RotativaConfiguration.Setup("wwwroot", wkhtmltopdfRelativePath: "Rotativa");
 
 app.UseStaticFiles();
 app.UseRouting();
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { } //make the auto-generated Program accessible programatically
