@@ -65,7 +65,7 @@ namespace CRUDTests
 
   //When we supply null value as PersonAddRequest, it should throw ArgumentNullException
   [Fact]
-  public async Task AddPerson_NullPerson()
+  public async Task AddPerson_NullPerson_ToBeArgumentNullException()
   {
    //Arrange
    PersonAddRequest? personAddRequest = null;
@@ -89,6 +89,10 @@ namespace CRUDTests
     PersonAddRequest? personAddRequest = _fixture.Build<PersonAddRequest>()
                 .With(temp => temp.PersonName, null as string).Create();
 
+    Person person = personAddRequest.ToPerson();
+    PersonResponse person_response_expected = person.ToPersonResponse();
+
+    _personsRepositoryMock.Setup(t => t.AddPerson(It.IsAny<Person>())).ReturnsAsync(person);
     //Act
    Func<Task> action = (async () =>
    {
