@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Xml.Serialization;
 
-namespace CitiesManager.WebAPI.Models
+namespace CitiesManager.Core.Models
 {
  public class City
  {
