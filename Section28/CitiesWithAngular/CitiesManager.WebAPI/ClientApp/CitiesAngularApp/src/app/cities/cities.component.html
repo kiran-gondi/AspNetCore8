@@ -1,0 +1,20 @@
+<h1>Cities</h1>
+
+<div class="table-container">
+  <table class="table w-100">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>City Name</th>
+      </tr>
+    </thead>
+
+      <tbody>
+        <tr *ngFor="let city of cities; let i = index">
+          <td>{{i+1}}-{{city.cityID}}</td>
+          <td>{{city.cityName}}</td>
+        </tr>
+      </tbody>
+
+  </table>
+</div>
