@@ -66,13 +66,13 @@ builder.Services.AddCors(options =>
         .WithMethods("GET", "POST", "PUT", "DELETE");
     });
 
-    options.AddPolicy("54007Client", policyBuilder =>
-    {
-        policyBuilder
-        .WithOrigins(builder.Configuration.GetSection("AllowedOriginFor54007Client").Get<string[]>())
-        .WithHeaders("Authorization", "origin", "accept")
-        .WithMethods("GET");
-    });
+    //options.AddPolicy("54007Client", policyBuilder =>
+    //{
+    //    policyBuilder
+    //    .WithOrigins(builder.Configuration.GetSection("AllowedOriginFor54007Client").Get<string[]>())
+    //    .WithHeaders("Authorization", "origin", "accept")
+    //    .WithMethods("GET");
+    //});
 });
 
 var app = builder.Build();
