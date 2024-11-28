@@ -7,11 +7,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { CitiesComponent } from './cities/cities.component';
+import { DisableControlDirective } from './directives/disable-control.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CitiesComponent
+    CitiesComponent,
+    DisableControlDirective
   ],
   imports: [
     BrowserModule,
